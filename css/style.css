@@ -1,0 +1,92 @@
+
+/* TEMPLATE DASHBOARD */
+
+.css-1aumxhk h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;
+}
+.css-145kmo2 {
+    font-size: 0.8rem;
+    color: rgb(38, 39, 48);
+    margin-bottom: 0.4rem;
+    color: #fff;
+}
+
+.css-1aumxhk {
+    /*background-color: rgb(17, 71, 179);
+    background-image: linear-gradient(rgb(250, 250, 250), rgb(250, 250, 250));*/
+    background-image: url("https://i.ibb.co/kK6JQkn/background.png");
+    background-repeat: repeat-y;
+    flex-shrink: 0;
+    height: 100vh;
+    overflow: auto;
+    padding: 5rem 1rem;
+    position: relative;
+    transition: margin-left 300ms ease 0s, box-shadow 300ms ease 0s;
+    width: 21rem;
+    z-index: 100;
+    margin-left: 0px;
+}
+
+.css-3xqji8 {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: 400;
+    border-radius: 0.25rem;
+    margin: 0px;
+    line-height: 1.6;
+    color: #fff;
+    width: auto;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.75rem;
+    margin-top: 45px;
+}
+.css-3xqji8:hover {
+    border-color: #11B3FD;
+}
+.css-3xqji8:active {
+    background-color: #11B3FD;
+    border-color: #11B3FD;
+    color: rgb(255, 255, 255);
+}
+
+.css-3xqji8:focus {
+    box-shadow: rgba(51, 113, 246, 0.5) 0px 0px 0px 0.2rem;
+    outline: none;
+}
+
+
+
+.css-xq1lnh-EmotionIconBase {
+    vertical-align: middle;
+    overflow: hidden;
+    color: #4895ff;
+    fill: currentcolor;
+    display: inline-flex;
+    font-size: 0.9rem;
+    width: 0.9rem;
+    height: 0.9rem;
+}
+
+.css-kywgdc {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    height: 0.125rem;
+    /*background-image: linear-gradient(90deg, rgb(246, 51, 102), rgb(255, 253, 128));*/
+    background-image: linear-gradient(90deg, rgb(113, 8, 254), rgb(10, 146, 229));
+    z-index: 1000020;
+}
+
+
+
+span[data-baseweb="tag"] {
+    background-color: #7700ff !important;
+}
+
