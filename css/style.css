@@ -14,9 +14,9 @@
 }
 
 .css-1aumxhk {
-    /*background-color: rgb(17, 71, 179);
-    background-image: linear-gradient(rgb(250, 250, 250), rgb(250, 250, 250));*/
-    background-image: url("https://i.ibb.co/kK6JQkn/background.png");
+    background-color: rgb(17, 71, 179);
+    background-image: linear-gradient(rgb(250, 250, 250), rgb(250, 250, 250));
+    /*background-image: url("https://i.ibb.co/kK6JQkn/background.png");*/
     background-repeat: repeat-y;
     flex-shrink: 0;
     height: 100vh;
@@ -159,4 +159,29 @@ span[data-baseweb="tag"] {
     box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
     transition: all 0.3s ease-out;
     border-left: 3px solid #12EDC7;
+}
+
+@media (max-width: 414px) {
+    
+    #interface .navigation {
+        padding: 15px;
+    }
+
+    .values {
+        margin-top: -55px;
+        padding: 15px 15px 0 15px;
+
+    }
+
+    .values .val-box {
+        width: 100%;
+        margin: 8px 0;
+    }
+
+    .title-d{
+        margin-top: 55px;
+    }
+    .image{
+        margin-left: 150px;
+    }
 }
