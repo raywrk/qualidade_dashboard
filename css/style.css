@@ -14,9 +14,9 @@
 }
 
 .css-1aumxhk {
-    background-color: rgb(17, 71, 179);
-    background-image: linear-gradient(rgb(250, 250, 250), rgb(250, 250, 250));
-    /*background-image: url("https://i.ibb.co/kK6JQkn/background.png");*/
+    /*background-color: rgb(17, 71, 179);
+    background-image: linear-gradient(rgb(250, 250, 250), rgb(250, 250, 250));*/
+    background-image: url("https://raw.githubusercontent.com/raywrk/qualidade_dashboard/main/img/background.png");
     background-repeat: repeat-y;
     flex-shrink: 0;
     height: 100vh;
