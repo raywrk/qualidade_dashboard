@@ -60,8 +60,6 @@
     outline: none;
 }
 
-
-
 .css-xq1lnh-EmotionIconBase {
     vertical-align: middle;
     overflow: hidden;
@@ -84,9 +82,81 @@
     z-index: 1000020;
 }
 
-
-
 span[data-baseweb="tag"] {
     background-color: #7700ff !important;
 }
 
+    
+/* CARDS KPI */
+
+.values{      /* ATRIBUTOS DOS VALORES CARD KPI */
+    padding: 20px 10px;  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.values .val-box{
+    margin-top: -10px;
+    background-color: #fff;
+    width: 275px;
+    padding: 16px 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+    transition: all 0.3s ease-out;
+    border-left: 3px solid #12EDC7;
+}
+.values .val-box:hover{
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+.values .val-box i{
+    font-size: 25px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    margin-right: 15px;
+}
+
+
+.values .val-box:nth-child(1) i{
+    background-color: #7700ff;
+}
+.values .val-box:nth-child(2) i{
+    background-color: #2f61ee;
+}
+.values .val-box:nth-child(3) i{
+    background-color: #11b3fd;
+}
+.values .val-box:nth-child(4) i{
+    background-color: #7700ff;
+}
+.values .val-box:nth-child(5) i{
+    background-color: #2f61ee;
+}
+
+
+.chart-bar{
+    padding: 20px 10px;  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #fff;
+    width: 275px;
+    padding: 16px 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+    transition: all 0.3s ease-out;
+    border-left: 3px solid #12EDC7;
+}
