@@ -1,12 +1,8 @@
 
-from pickletools import markobject
-from tkinter import Y
-from turtle import color
 import psycopg2
 import pandas as pd
 import streamlit as st
 import plotly.express as px
-import plotly.graph_objects as go
 
 from load_css import local_css
 
