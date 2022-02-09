@@ -100,6 +100,12 @@ span[data-baseweb="tag"] {
     background-color: #7700ff !important;
 }
 
+span.css-1qkncxf.e1pxm3bq4{
+    pointer-events:none;
+    opacity:0.6;
+}
+
+
     
 /* CARDS KPI */
 
