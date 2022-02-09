@@ -404,15 +404,14 @@ st.download_button(
      mime='text/csv',
  )
 
-ocultar_st_style = '''
-    <style>
-    <!--#MainMenu {visibility: hidden;}-
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    </style>
-
-'''
-st.markdown(ocultar_st_style, unsafe_allow_html=True)
+#ocultar_st_style = '''
+#    <style>
+#    <!--#MainMenu {visibility: hidden;}-
+#    footer {visibility: hidden;}
+#    header {visibility: hidden;}
+#    </style>
+#'''
+#st.markdown(ocultar_st_style, unsafe_allow_html=True)
 
 
 
