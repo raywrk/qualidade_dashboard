@@ -1,14 +1,18 @@
 
+
 import psycopg2
 import pandas as pd
 import streamlit as st
 import plotly.express as px
+import plotly.graph_objects as go
+
 
 from load_css import local_css
 
-st.set_page_config(page_title='Neobpo IN',
-                    page_icon=':bar_chart',
-                    layout='wide')
+st.set_page_config(page_title='Dashboard - AMIL | Neobpo',
+                    page_icon='chart_with_upwards_trend',
+                    layout='wide',
+                    initial_sidebar_state="expanded")
 
 local_css("css/style.css")
 
@@ -185,6 +189,29 @@ def dataframeQuartilTodos():
 
     return df  
 
+def dataframeQualidadeDiaTodos():
+    db_connection = psycopg2.connect(host='ec2-54-235-98-1.compute-1.amazonaws.com', database='da9l8k9c6ulbd5', user='lcmulsicvhazdl', password='0101b23af78c44e6bf095833662077d9909afdc669962f0fd8b7ef593916fd91', port='5432')
+    db_cursor = db_connection.cursor()
+    db_cursor.execute(f'''
+
+            select
+            	to_char(to_date(segmentstarttime,'dd-mm-yyyy'), 'yyyy-mm-dd')::date as "Data",
+            	round(avg(replace(score, ',', '.')::numeric),2) as "Nota"
+            from qualidade q
+            where to_char(to_date(segmentstarttime,'dd-mm-yyyy'), 'yyyy-mm-dd')::date >= '{start_date}'
+            and to_char(to_date(segmentstarttime,'dd-mm-yyyy'), 'yyyy-mm-dd')::date <= '{end_date}'
+            group by to_char(to_date(segmentstarttime,'dd-mm-yyyy'), 'yyyy-mm-dd')::date 
+
+    ''')
+
+    result = db_cursor.fetchall()
+    db_connection.close()
+
+    columns = ['Data', 'Nota']
+    df = pd.DataFrame(data=result, columns=columns)
+
+    return df  
+
 # RESULTS KPIS CARDS 
 
 resultNota = notaQualidadeTodos()
@@ -198,6 +225,7 @@ resultForaDoPrazo = foraDoPrazoPercentTodos()
 resultSuper = dataFrameSupervisorTodos()
 resultStatus = dataframeStatusTodos()
 resultQuartil = dataframeQuartilTodos()
+resultDiaQualidade = dataframeQualidadeDiaTodos()
 
 # --------- FRONT-END --------------#
 
@@ -244,16 +272,17 @@ st.markdown(f'''
     </div>
 ''', unsafe_allow_html=True)
 
-# CHART QUARTIL
 
+# CHART QUARTIL SCORE
 
 quartilOperadorScore = (
-    round(resultQuartil.groupby(by=['Quartil'], as_index=False).mean()[['Score']].sort_values(by='Score'),2)
+    round(resultQuartil.groupby(by=['Quartil']).mean()[['Score']].sort_values(by='Score'),0)
 )
 quartilOperadorQtde = (
-     resultQuartil.groupby(by=['Quartil'], as_index=False).count()[['Score']].sort_values(by='Score', ascending=False).rename(columns={'Score': 'Qtde HC'})
+     resultQuartil.groupby(by=['Quartil']).count()[['Score']].sort_values(by='Score', ascending=False).rename(columns={'Score': 'Qtde HC'})
 
 )
+
 
 chartQuartilScore = px.bar(quartilOperadorScore,
             y='Score',
@@ -270,6 +299,7 @@ chartQuartilScore.update_layout(
     
 )
 
+# CHART QUARTIL QTDE HC 
 
 chartQuartilQtde = px.bar(quartilOperadorQtde,
             y='Qtde HC',
@@ -321,8 +351,32 @@ chartFeedback.update_layout(
                      x = 0.5)
 )
 
+# CHART DIA QUALIDADE
 
-col1, col2, col3 = st.beta_columns(3)
+dayQualidade = px.line(resultDiaQualidade,
+                       x='Data',
+                       y='Nota',
+                       text='Nota',
+                       title='<b>Qualidade por dia</b>',
+                       template='plotly_white')
+
+dayQualidade.update_traces(textposition="top center")
+
+
+# TABLE QUARTIL
+
+tableQuartil = go.Figure(data=[go.Table(
+    header=dict(values=list(resultQuartil.columns),
+                fill_color='#7700FF',
+                font=dict(color='white', size=12),
+                align='center'),
+    cells=dict(values=[resultQuartil.Nome, resultQuartil.Supervisor, resultQuartil.Coordenador, resultQuartil.Score, resultQuartil.Quartil],
+               fill_color='lavender',
+               align='left'))
+])
+
+
+col1, col2, col3 = st.columns(3)
 
 with col1:
     st.plotly_chart(chartFeedback,  use_container_width=True)
@@ -335,12 +389,30 @@ with col3:
 
 st.plotly_chart(chartSupervisor, use_container_width=True)
 
-st.markdown('#')
+st.plotly_chart(dayQualidade, use_container_width=True)
 
-st.dataframe(resultQuartil)
+st.plotly_chart(tableQuartil, use_container_width=True)
 
+def downloadQuartil():
+    df = dataframeQuartilTodos()
+    return df.to_csv().encode('utf-8')
 
+st.download_button(
+     label="Donwload Quartil",
+     data=downloadQuartil(),
+     file_name=f'Rel_Quartil_{start_date}.csv',
+     mime='text/csv',
+ )
 
+ocultar_st_style = '''
+    <style>
+    <!--#MainMenu {visibility: hidden;}-
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    </style>
+
+'''
+st.markdown(ocultar_st_style, unsafe_allow_html=True)
 
 
 
